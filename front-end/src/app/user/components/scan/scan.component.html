@@ -1,0 +1,120 @@
+<div class="grid-container fade">
+  <div fxLayout="column" fxLayoutGap="20">
+    <mat-card class="bg-blue">
+      <mat-card-title class="mb-20 text-white">Scan barcode</mat-card-title>
+      <mat-card-content class="search-box">
+        <form
+          [formGroup]="formSearch"
+          (submit)="onSearchProduct()"
+          fxLayout="row"
+          fxLayout.xs="column"
+          fxLayoutGap="10"
+          fxLayoutAlign="start center"
+          fxLayoutAlign.xs
+        >
+          <div fxFlex class="input-search">
+            <input
+              #inputSearch
+              type="text"
+              class="full-width"
+              placeholder="Search"
+              formControlName="code"
+            />
+            <button
+              type="button"
+              *ngIf="code.value"
+              (click)="clearInputSearch()"
+              matSuffix
+              mat-icon-button
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+          <div fxFlexAlign.xs="center">
+            <button
+              type="submit"
+              class="btn-search"
+              matRipple
+              [disabled]="isDisabled"
+            >
+              Search
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-title class="mb-20 text-gray">Product</mat-card-title>
+      <div class="spinner-container" *ngIf="spinLoading">
+        <mat-progress-spinner [diameter]="50" mode="indeterminate">
+        </mat-progress-spinner>
+      </div>
+      <mat-card-content>
+        <table mat-table [dataSource]="dataSource" class="full-width">
+          <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef>Code</th>
+            <td mat-cell *matCellDef="let element">{{ element.code }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef>Stock</th>
+            <td mat-cell *matCellDef="let element">{{ element.stock }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>Quantity</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button (click)="Remove(element)">
+                <mat-icon>remove</mat-icon>
+              </button>
+              <input
+                type="text"
+                class="input-quantity"
+                [value]="element.quantity"
+                (focusout)="InputQuantity(element, $event)"
+              />
+
+              <button mat-icon-button (click)="Add(element)">
+                <mat-icon>add</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>Remove</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                type="button"
+                mat-icon-button
+                color="warn"
+                (click)="onRemoveProductStock(element.code)"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <div class="btn-stock-box">
+          <button
+            type="button"
+            class="btn-stock"
+            mat-ripple
+            [disabled]="isDisabledBtnStock"
+            (click)="onCutProductStock()"
+          >
+            Submit
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

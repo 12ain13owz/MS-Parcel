@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+@import "node_modules/angular-notifier/styles";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.bg-blue {
+  background-color: #1e90ff;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-gray {
+  color: #767676;
+}
+
+.text-blue {
+  color: #0094f6;
+}
+
+.text-red {
+  color: #f44336;
+}
+
+.grid-container {
+  position: relative;
+  display: grid;
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mb-20 {
+  margin-bottom: 20px !important;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+    left: 20px;
+  }
+  100% {
+    opacity: 1;
+    left: 0;
+  }
+}
+
+.mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #1e90ff;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: inherit;
+}
+
+.fade {
+  animation: fade 0.4s;
+}

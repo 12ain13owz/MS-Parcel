@@ -1,0 +1,20 @@
+<mat-toolbar>Menu</mat-toolbar>
+<hr class="line" />
+<mat-nav-list>
+  <a mat-list-item [routerLink]="['scan']" [routerLinkActive]="['active']"
+    ><mat-icon>qr_code_2</mat-icon>
+    <p>Scan code</p></a
+  >
+  <!-- <a mat-list-item [routerLink]="['dashboard']" [routerLinkActive]="['active']"
+    ><mat-icon>dashboard</mat-icon>
+    <p>Dashboard</p></a
+  > -->
+  <a mat-list-item [routerLink]="['product']" [routerLinkActive]="['active']"
+    ><mat-icon>list</mat-icon>
+    <p>Product</p></a
+  >
+  <a mat-list-item [routerLink]="['stock']" [routerLinkActive]="['active']"
+    ><mat-icon>inventory</mat-icon>
+    <p>Stock</p></a
+  >
+</mat-nav-list>

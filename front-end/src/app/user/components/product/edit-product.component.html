@@ -1,0 +1,73 @@
+<h2 mat-dialog-title class="mat-typography">Edit Product</h2>
+<form [formGroup]="form" (submit)="onSubmit()">
+  <mat-dialog-content>
+    <div fxLayout="column" fxLayoutGap="20">
+      <div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="10">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            type="text"
+            placeholder="Code"
+            formControlName="code"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input
+            #inputTitle
+            matInput
+            type="text"
+            placeholder="Title"
+            formControlName="title"
+          />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutGap="10">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            type="text"
+            placeholder="Stock"
+            formControlName="stock"
+            (input)="NumberOnly(stock.value, stock)"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            type="text"
+            placeholder="Add Stock"
+            formControlName="addStock"
+            (input)="NumberOnly(addStock.value, addStock)"
+          />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="full-width">
+        <textarea
+          matInput
+          placeholder="Specification"
+          rows="10"
+          formControlName="specification"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button type="button" mat-raised-button color="warn" (click)="onReset()">
+      Reset
+    </button>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      (click)="onSubmit()"
+      [disabled]="isDisabled"
+    >
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>

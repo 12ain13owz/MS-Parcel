@@ -1,0 +1,64 @@
+<section>
+  <div class="color"></div>
+  <div class="color"></div>
+  <div class="color"></div>
+
+  <div class="box">
+    <div class="container">
+      <mat-progress-bar
+        mode="indeterminate"
+        *ngIf="isProgressBar"
+      ></mat-progress-bar>
+      <div class="form">
+        <h2>Register Form</h2>
+        <form [formGroup]="form" (submit)="onSubmit()">
+          <div class="input-box">
+            <input
+              #inputEmail
+              formControlName="email"
+              type="text"
+              placeholder="Email"
+            />
+            <span *ngIf="isError(email, 'required')">Email is required</span>
+            <span *ngIf="isError(email, 'email')"
+              >Example format test@example.com.</span
+            >
+          </div>
+          <div class="input-box mt-25">
+            <input
+              formControlName="password"
+              type="password"
+              placeholder="Password"
+            />
+            <span *ngIf="isError(password, 'required')"
+              >Password is required.</span
+            >
+          </div>
+          <div class="input-box mt-25">
+            <input
+              formControlName="cpassword"
+              type="password"
+              placeholder="Comfirm Password"
+            />
+            <span *ngIf="isError(cpassword, 'required')"
+              >Comfirm Password is required.</span
+            >
+            <span
+              *ngIf="
+                isError(cpassword, 'compare') && !isError(cpassword, 'required')
+              "
+              >Password do not match.</span
+            >
+          </div>
+          <div class="input-box mt-25">
+            <button type="submit" [disabled]="isDisabled">Register</button>
+          </div>
+          <!-- <p class="forget">Forgot Password? <a href="#">Click Here</a></p> -->
+          <p class="forget">
+            Already have an account? <a routerLink="/login">Log in</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
